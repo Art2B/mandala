@@ -1,5 +1,6 @@
 body {
   padding: 5rem;
+  background: #333;
 }
 
 * {
@@ -7,6 +8,53 @@ body {
 }
 
 canvas {
+  background: white;
   display: block;
   border: 2px solid black;
+}
+
+.colorPicker {
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  display: flex;
+  justify-content: center;
+  height: 450px;
+  width: 50px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.colorPicker__button {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  font-size: 1.6rem;
+  background: white;
+  transition: all ease 0.3s;
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.colorPicker__colorList {
+  position: absolute;
+  bottom: 50px;
+  z-index: 5;
+}
+
+.colorPicker__colorList__color {
+  height: 50px;
+  width: 50px;
+  cursor: cell;
+  transition: ease all 0.2s;
+}
+
+.colorPicker__colorList__color:hover {
+  height: 60px;
 }

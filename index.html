@@ -6,7 +6,51 @@
   <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-  <canvas height="30" width="500" id="colorPicker"></canvas>
+  <section class="colorPicker">
+    <button class="colorPicker__button" type="button" name="button">💄</button>
+    <div class="colorPicker__colorList">
+      <div class="colorPicker__colorList__color"
+        style="background:#000"
+        onclick="pickColor('#000')"
+        >
+      </div>
+      <div class="colorPicker__colorList__color"
+        style="background:#FFF"
+        onclick="pickColor('#FFF')"
+        >
+      </div>
+      <div class="colorPicker__colorList__color"
+        style="background:#F44336"
+        onclick="pickColor('#F44336')"
+        >
+      </div>
+      <div class="colorPicker__colorList__color"
+        style="background:#2196F3"
+        onclick="pickColor('#2196F3')"
+        >
+      </div>
+      <div class="colorPicker__colorList__color"
+        style="background:#9C27B0"
+        onclick="pickColor('#9C27B0')"
+        >
+      </div>
+      <div class="colorPicker__colorList__color"
+        style="background:#009688"
+        onclick="pickColor('#009688')"
+        >
+      </div>
+      <div class="colorPicker__colorList__color"
+        style="background:#3F51B5"
+        onclick="pickColor('#3F51B5')"
+        >
+      </div>
+      <div class="colorPicker__colorList__color"
+        style="background:#FF9800"
+        onclick="pickColor('#FF9800')"
+        >
+      </div>
+    </div>
+  </section>
   <canvas height="500" width="500" id="canvas"></canvas>
   <script type="text/javascript" src="main.js"></script>
 </body>
