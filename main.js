@@ -14,6 +14,8 @@ window.onload = function () {
   ctx.beginPath()
   ctx.moveTo(0, c.height/2)
   ctx.lineTo(c.width, c.height/2)
+  ctx.moveTo(c.width/2, 0)
+  ctx.lineTo(c.width/2, c.height)
   ctx.stroke()
 
   var setLastPosition = function (x, y) {
@@ -42,6 +44,16 @@ window.onload = function () {
     ctx.beginPath()
     ctx.moveTo(lastPosition.x, (c.height - lastPosition.y))
     ctx.lineTo(e.offsetX, (c.height - e.offsetY))
+    ctx.stroke()
+
+    ctx.beginPath()
+    ctx.moveTo((c.width - lastPosition.x), lastPosition.y)
+    ctx.lineTo((c.width - e.offsetX), e.offsetY)
+    ctx.stroke()
+
+    ctx.beginPath()
+    ctx.moveTo((c.width - lastPosition.x), (c.height - lastPosition.y))
+    ctx.lineTo((c.width - e.offsetX), (c.height - e.offsetY))
     ctx.stroke()
 
     setLastPosition(e.offsetX, e.offsetY)
