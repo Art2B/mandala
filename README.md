@@ -1,4 +1,4 @@
-# Mandela
+# Mandala
 
 To make some nice mandela with canvas in js.
 
