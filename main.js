@@ -13,7 +13,7 @@ window.onload = function () {
     y: null
   }
 
-  var nbParts = 4
+  var nbParts = 12
 
   // draw help line for mirroring
   for (var i = 0; i < nbParts; i++) {
@@ -41,26 +41,63 @@ window.onload = function () {
     }
   }
 
+  function and(x, y) {
+    return x ? y : false;
+  }
+
+  function solveAngle(a, b, c) {
+    var temp = (a * a + b * b - c * c) / (2 * a * b);
+    if (and(temp >= -1, 0.9999999 >= temp))
+      return Math.acos(temp)
+    else if (1 >= temp)  // Explained in https://www.nayuki.io/page/numerically-stable-law-of-cosines
+      return Math.sqrt((c * c - (a - b) * (a - b)) / (a * b))
+    else
+      throw "No solution";
+  }
+
+  function rotatePoint (point, rotation) {
+    var radius = Math.sqrt(Math.pow(point.x - (c.width/2), 2) + Math.pow(point.y - (c.height/2), 2))
+    var p1 = {
+      x: (c.width/2) + radius * Math.cos(0),
+      y: (c.height/2) + radius * Math.sin(0)
+    }
+    var a = point.x - p1.x
+    var b = point.y - p1.y
+    var distBetweenPosAndP1 = Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) )
+    var angleBetweenPosAndP1 = solveAngle(radius, radius, distBetweenPosAndP1)
+
+    var testX = Math.round((c.width/2) + radius * Math.cos(-angleBetweenPosAndP1))
+    var testY = Math.round((c.height/2) + radius * Math.sin(-angleBetweenPosAndP1))
+
+    var angleDirection = ( testX === point.x && testY === point.y) ? -1 : 1
+    var angle = rotation + (angleBetweenPosAndP1 * angleDirection)
+
+    return {
+      x: (c.width/2) + radius * Math.cos(angle),
+      y: (c.height/2) + radius * Math.sin(angle)
+    }
+  }
+
   var drawLines = function (x, y) {
-    ctx.beginPath()
-    ctx.moveTo( lastPosition.x, lastPosition.y)
-    ctx.lineTo(x, y)
-    ctx.stroke()
+    for (var i = 0; i < nbParts; i++) {
+      if (i === 0) {
+        ctx.beginPath()
+        ctx.moveTo(lastPosition.x, lastPosition.y)
+        ctx.lineTo(x, y)
+        ctx.stroke()
+        continue
+      }
 
-    ctx.beginPath()
-    ctx.moveTo(lastPosition.x, (c.height - lastPosition.y))
-    ctx.lineTo(x, (c.height - y))
-    ctx.stroke()
+      var rotation = (2*Math.PI) * (i/nbParts)
+      let lastPositionRotated = rotatePoint(lastPosition, rotation)
+      var positionRotated = rotatePoint({x: x, y: y}, rotation)
 
-    ctx.beginPath()
-    ctx.moveTo((c.width - lastPosition.x), lastPosition.y)
-    ctx.lineTo((c.width - x), y)
-    ctx.stroke()
-
-    ctx.beginPath()
-    ctx.moveTo((c.width - lastPosition.x), (c.height - lastPosition.y))
-    ctx.lineTo((c.width - x), (c.height - y))
-    ctx.stroke()
+      // draw line
+      ctx.beginPath()
+      ctx.moveTo(lastPositionRotated.x, lastPositionRotated.y)
+      ctx.lineTo(positionRotated.x, positionRotated.y)
+      ctx.stroke()
+    }
   }
 
   var handleMouseMove = function (e) {
