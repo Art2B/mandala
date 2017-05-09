@@ -1,3 +1,9 @@
+let currentColor = "#000"
+
+const pickColor = (color) => {
+  currentColor = color
+}
+
 window.onload = function () {
   var c = document.getElementById("canvas")
   var ctx = c.getContext("2d")
@@ -7,6 +13,8 @@ window.onload = function () {
   ctx.beginPath();
   ctx.arc(c.width/2, c.height/2, radius, 0,2*Math.PI);
   ctx.stroke();
+
+  ctx.strokeStyle = currentColor;
 
   var lastPosition = {
     x: null,
@@ -79,6 +87,7 @@ window.onload = function () {
   }
 
   var drawLines = function (x, y) {
+    ctx.strokeStyle = currentColor;
     for (var i = 0; i < nbParts; i++) {
       if (i === 0) {
         ctx.beginPath()
@@ -116,28 +125,4 @@ window.onload = function () {
     ctx.closePath()
     resetLastPosition()
   })
-
-  // COLOR PICKER - 20height
-  var cp = document.getElementById("colorPicker")
-  var cpCtx = cp.getContext("2d")
-
-  //COLORS
-  const heightCP = 30
-
-  var   base    = '#000',
-        white   = '#FFF',
-        red     = '#F44336',
-        blue    = '#2196F3',
-        pink    = '#9C27B0',
-        teal    = '#009688',
-        indigo  = '#3F51B5',
-        orange  = '#FF9800'
-
-  const colors = [base, white, red, blue, pink, teal, indigo, orange]
-
-  colors.forEach((color, index) => {
-    cpCtx.fillStyle = color
-    cpCtx.fillRect(index * heightCP, 0, 30, 30)
-  })
-
 }
