@@ -80,4 +80,27 @@ window.onload = function () {
     resetLastPosition()
   })
 
+  // COLOR PICKER - 20height
+  var cp = document.getElementById("colorPicker")
+  var cpCtx = cp.getContext("2d")
+
+  //COLORS
+  const heightCP = 30
+
+  var   base    = '#000',
+        white   = '#FFF',
+        red     = '#F44336',
+        blue    = '#2196F3',
+        pink    = '#9C27B0',
+        teal    = '#009688',
+        indigo  = '#3F51B5',
+        orange  = '#FF9800'
+
+  const colors = [base, white, red, blue, pink, teal, indigo, orange]
+
+  colors.forEach((color, index) => {
+    cpCtx.fillStyle = color
+    cpCtx.fillRect(index * heightCP, 0, 30, 30)
+  })
+
 }

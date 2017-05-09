@@ -1,4 +1,12 @@
+body {
+  padding: 5rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 canvas {
+  display: block;
   border: 2px solid black;
-  margin: 50px;
 }
