@@ -131,4 +131,10 @@ window.onload = function () {
   exportBtn.addEventListener('click', function (e) {
     exportBtn.href = c.toDataURL('image/png')
   })
+
+  // Update nb parts
+  var nbPartInput = document.getElementById('nb-parts')
+  nbPartInput.addEventListener('change', function (e) {
+    nbParts = e.target.value
+  })
 }
