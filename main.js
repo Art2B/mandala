@@ -21,7 +21,7 @@ window.onload = function () {
     y: null
   }
 
-  var nbParts = 12
+  var nbParts = 100
 
   // draw help line for mirroring
   for (var i = 0; i < nbParts; i++) {
@@ -124,5 +124,11 @@ window.onload = function () {
     c.removeEventListener('mousemove', handleMouseMove)
     ctx.closePath()
     resetLastPosition()
+  })
+
+  // Export as jpg
+  var exportBtn = document.getElementById('export-png')
+  exportBtn.addEventListener('click', function (e) {
+    exportBtn.href = c.toDataURL('image/png')
   })
 }
