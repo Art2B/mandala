@@ -19,7 +19,7 @@ window.onload = function () {
   }
 
   ctx.strokeStyle = currentColor;
-  
+
   var drawHelpLines = function () {
     ctxHelp.clearRect(0, 0, cHelp.width, cHelp.height)
     ctxHelp.beginPath()
@@ -141,6 +141,14 @@ window.onload = function () {
   var nbPartInput = document.getElementById('nb-parts')
   nbPartInput.addEventListener('change', function (e) {
     nbParts = e.target.value
+    drawHelpLines()
+  })
+
+  // Hide / show help
+  document.getElementById('hide-help').addEventListener('click', function () {
+    ctxHelp.clearRect(0, 0, cHelp.width, cHelp.height)
+  })
+  document.getElementById('show-help').addEventListener('click', function () {
     drawHelpLines()
   })
 }
