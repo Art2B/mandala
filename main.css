@@ -13,6 +13,13 @@ canvas {
   border: 2px solid black;
 }
 
+#canvas-help {
+  position: absolute;
+  top: 5.5rem;
+  left: 5.5rem;
+  background: transparent;
+}
+
 .colorPicker {
   position: fixed;
   bottom: 3rem;
